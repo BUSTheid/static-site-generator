@@ -23,7 +23,7 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is a code snippet", TextType.CODE)
         self.assertEqual(node, node2)
 
-    def test_eq_link(self):
+    def test_eq_url(self):
         node = TextNode("This is a link", TextType.LINK, "https://www.youtube.com")
         node2 = TextNode("This is a link", TextType.LINK, "https://www.youtube.com")
         self.assertEqual(node, node2)
@@ -33,7 +33,7 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is an image", TextType.IMAGE, "image.png")
         self.assertEqual(node, node2)
 
-    def test_noteq_no_link(self):
+    def test_noteq_no_url(self):
         node = TextNode("This is a text node", TextType.NORMAL, "https://www.youtube.com")
         node2 = TextNode("This is a text node", TextType.NORMAL)
         self.assertNotEqual(node, node2)
@@ -47,6 +47,12 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("Hello!", TextType.NORMAL)
         node2 = TextNode("Hello!", TextType.BOLD)
         self.assertNotEqual(node, node2)
+
+    def test_repr(self):
+        node = TextNode("Hello!", TextType.BOLD, "https://youtube.com")
+        self.assertEqual(
+            "TextNode(Hello!, bold, https://youtube.com)", repr(node)
+        )
 
 
 
